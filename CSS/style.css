@@ -1,0 +1,383 @@
+html {
+  color: white;
+}
+
+body {
+  font-family: "Courier New", Courier, monospace;
+  animation: slide-in 1s ease-out;
+  transform: translateX(-100%);
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  padding: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+li {
+  list-style: none;
+}
+
+.indexpage {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.active {
+  color: cyan;
+}
+
+.introduction {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10vh;
+  width: 98vw;
+}
+
+.introduction > img {
+  border-radius: 50%;
+  margin-top: 5vh;
+  border: 2px cyan solid;
+  transform: rotateZ(-10deg);
+}
+
+.introduction > h1 > span {
+  color: cyan;
+}
+
+.contacteermij {
+  text-decoration: underline;
+}
+
+.projects {
+  display: grid;
+  place-items: center;
+  gap: 1vw;
+  grid-template-columns: repeat(3, 32vw);
+}
+
+.project > img {
+  border-radius: 5%;
+  margin-top: 5vh;
+}
+
+.project {
+  background: transparent;
+  backdrop-filter: blur(5px);
+  padding: 16px;
+  border-radius: 5px;
+}
+
+.githublink {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.about {
+  min-width: 300px;
+  width: 42vw;
+  margin-top: 4vh;
+  margin-left: 5vw;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 49vw);
+  grid-template-rows: auto;
+}
+
+.about-full-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 90vw);
+  grid-template-rows: auto;
+}
+
+.about-full {
+  min-width: 300px;
+  width: 100%;
+  margin-left: 0;
+  margin-top: 4vh;
+  text-align: center;
+  grid-area: span 2 / 1;
+}
+
+.about > h3 {
+  font-size: 40px;
+}
+
+.about > p {
+  font-size: 20px;
+}
+
+.container {
+  width: 35vw;
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+  border: 1px cyan solid;
+}
+
+.skills {
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.html {
+  width: 70%;
+  background-color: #04aa6d;
+  animation: html 2s ease-in;
+}
+.css {
+  width: 60%;
+  background-color: #2196f3;
+  animation: css 2s ease-in;
+}
+.js {
+  width: 40%;
+  background-color: #f44336;
+  animation: js 2s ease-in;
+}
+.php {
+  width: 20%;
+  background-color: #808080;
+  animation: php 2s ease-in;
+}
+
+@keyframes html {
+  from {
+    width: 0;
+  }
+  to {
+    width: 70%;
+  }
+}
+@keyframes css {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60%;
+  }
+}
+@keyframes js {
+  from {
+    width: 0;
+  }
+  to {
+    width: 40%;
+  }
+}
+@keyframes php {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 20%;
+  }
+}
+
+.artiest-video {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cvbutton {
+  width: 120px;
+  padding: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: darkred;
+  color: white;
+  animation: cvbutton 2s ease-in-out infinite;
+}
+
+@keyframes cvbutton {
+  0% {
+    width: 120px;
+  }
+  50% {
+    width: 180px;
+  }
+  100% {
+    width: 120px;
+  }
+}
+
+.cvimg {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 750px;
+  z-index: 2;
+}
+
+.close {
+  font-size: 45px;
+  font-weight: 600;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.formulier {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-form {
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+  border: 1px solid cyan;
+}
+
+label {
+  font-weight: bold;
+  color: white;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+option,
+textarea {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type="submit"] {
+  background-color: #000e3f;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+input[type="submit"]:hover {
+  background-color: #001655;
+}
+
+.Optioneel {
+  font-size: 13px;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: repeat(2, 49vw);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-inside {
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+  padding: 32px;
+  border-radius: 5px;
+  border: 1px solid cyan;
+}
+
+hr {
+  width: 20vw;
+}
+
+.projectlink {
+  font-size: 14px;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  animation: slide-in 1s ease-out;
+  transform: translateX(0);
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.bounce-image {
+  animation: bounce 3s infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.project {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.project-body {
+  animation: none;
+}
