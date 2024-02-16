@@ -104,6 +104,7 @@ li {
 }
 
 .about-full-grid {
+  margin-top: 12vh;
   display: grid;
   grid-template-columns: repeat(1, 90vw);
   grid-template-rows: auto;
