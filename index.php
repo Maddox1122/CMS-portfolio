@@ -2,7 +2,7 @@
 require("./require/require.php");
 
 if (!isset($_SESSION['login'])) {
-  $_SESSION['login'] = true;
+  $_SESSION['login'] = false;
 }
 ?>
 <!DOCTYPE html>

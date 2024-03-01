@@ -17,8 +17,19 @@ iframe {
 nav {
   display: flex;
   justify-content: space-around;
-  flex-direction: row;
-  padding: 16px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+li {
+  list-style-type: none;
 }
 
 a {
@@ -28,8 +39,14 @@ a {
   font-size: 30px;
 }
 
-li {
-  list-style: none;
+@media screen and (max-width: 700px) {
+  li {
+    margin: 10px 0;
+  }
+
+  a {
+    font-size: 16px;
+  }
 }
 
 .indexpage {
@@ -90,33 +107,29 @@ li {
   right: 20px;
 }
 
-.about {
-  min-width: 300px;
-  width: 42vw;
-  margin-top: 4vh;
-  margin-left: 5vw;
-}
-
-.about-grid {
+.main-container {
   display: grid;
-  grid-template-columns: repeat(2, 49vw);
-  grid-template-rows: auto;
+  grid-gap: 20px;
 }
 
-.about-full-grid {
-  margin-top: 12vh;
-  display: grid;
-  grid-template-columns: repeat(1, 90vw);
-  grid-template-rows: auto;
+@media (min-width: 700px) {
+  .main-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.about-full {
-  min-width: 300px;
-  width: 100%;
-  margin-left: 0;
-  margin-top: 4vh;
-  text-align: center;
-  grid-area: span 2 / 1;
+.half-row,
+.full-row {
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.half-row {
+  grid-column: span 1;
+}
+
+.full-row {
+  grid-column: span 2;
 }
 
 .about > h3 {
@@ -279,9 +292,43 @@ label {
   color: white;
 }
 
+.inputbox {
+  margin-bottom: 20px;
+}
+
+.inputbox span {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.inputbox input[type="date"] {
+  width: 93%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-container input[type="date"] {
+  width: calc(100% - 18px);
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="tel"],
+input[type="url"],
 select,
 option,
 textarea {
@@ -381,4 +428,18 @@ hr {
 
 .project-body {
   animation: none;
+}
+
+.cv {
+  display: inline-block;
+  padding: 10px 40px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.cv:hover {
+  background-color: #0056b3;
 }

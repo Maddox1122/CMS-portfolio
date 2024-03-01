@@ -1,6 +1,9 @@
 <?php
 require("../require/require.php");
 
+if (!isset($_SESSION['login'])) {
+  $_SESSION['login'] = false;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +51,6 @@ require("../require/require.php");
           $beschrijving = $result['Beschrijving'];
           $datum = $result['Datum'];
           $link = $result['link'];
-          $techniek = $result['Technieken'];
 
           $imgBase64 = base64_encode($img);
 
@@ -56,7 +58,6 @@ require("../require/require.php");
             <img src='data:image/*;base64,$imgBase64' width='500px' />
             <h3>$naam - $datum</h3>
             <a href='$link' target='_blank' class='projectlink'>$beschrijving - Go To Site</a>
-            <p>Techniques: $techniek</p>
         </div>";
         }
       }

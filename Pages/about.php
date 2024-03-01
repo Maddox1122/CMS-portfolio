@@ -1,5 +1,9 @@
 <?php
 require("../require/require.php");
+
+if (!isset($_SESSION['login'])) {
+  $_SESSION['login'] = false;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,62 +24,42 @@ require("../require/require.php");
       <li><a class="active" href="#">About/CV</a></li>
       <li><a href="./contact.php">Contact</a></li>
       <li>
-        <a href='../IMAGES/CV.png' download>Bekijk mijn CV</a>
-      </li>
-      <li>
         <?php if ($_SESSION['login'] == true) { ?>
           <a href="./profile.php">Admin <img src="assets/images/profile.jpg" alt="" /></a>
         <?php } else { ?>
           <a href="./login.php">Login <img style="filter: brightness(0) invert(1);" src="assets/images/login-header.png" alt="" /></a>
         <?php } ?>
       </li>
+      <li class='cv'><a href='../IMAGES/CV.png' download>CV</a></li>
     </nav>
   </header>
-  <main class="about-grid">
-    <section class="about">
-      <h3>Title</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga vel exercitationem eum dignissimos voluptatem. Similique facere dignissimos veniam at. Suscipit inventore quas omnis laudantium, cupiditate nesciunt pariatur sapiente ad distinctio.
-      </p>
-    </section>
-    <section class="about">
-      <h3>Title</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga vel exercitationem eum dignissimos voluptatem. Similique facere dignissimos veniam at. Suscipit inventore quas omnis laudantium, cupiditate nesciunt pariatur sapiente ad distinctio.
-      </p>
-    </section>
-  </main>
-  <main clas="about-full-grid">
-    <section class="about-full">
-      <h3>Title</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga vel exercitationem eum dignissimos voluptatem. Similique facere dignissimos veniam at. Suscipit inventore quas omnis laudantium, cupiditate nesciunt pariatur sapiente ad distinctio.
-      </p>
-    </section>
-  </main>
-  <main class="about-grid">
-    <section class="about">
-      <h3>Title</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga vel exercitationem eum dignissimos voluptatem. Similique facere dignissimos veniam at. Suscipit inventore quas omnis laudantium, cupiditate nesciunt pariatur sapiente ad distinctio.
-      </p>
-    </section>
-    <section class="about">
-      <h3>Title</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga vel exercitationem eum dignissimos voluptatem. Similique facere dignissimos veniam at. Suscipit inventore quas omnis laudantium, cupiditate nesciunt pariatur sapiente ad distinctio.
-      </p>
-    </section>
-  </main>
-  <main clas="about-full-grid">
-    <section class="about-full">
-      <h3>Title</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga vel exercitationem eum dignissimos voluptatem. Similique facere dignissimos veniam at. Suscipit inventore quas omnis laudantium, cupiditate nesciunt pariatur sapiente ad distinctio.
-      </p>
-    </section>
-  </main>
+  <main class="main-container clearfix">
+    <?php
+    $query = $db->query('SELECT * FROM aboutpage');
 
+    if (!$query) {
+      echo "Error executing query: " . $db->lastErrorMsg();
+      exit;
+    }
+
+    if ($query->numColumns() == 0) {
+      echo "<p>No Projects Found.</p>";
+    } else {
+
+      while ($result = $query->fetchArray(SQLITE3_ASSOC)) {
+        $title = $result['title'];
+        $beschrijving = $result['desc'];
+
+        echo "<div class='half-row'>";
+        echo "<h2>$title</h2>";
+        echo "<p>$beschrijving</p>";
+        echo "</div>";
+      }
+
+      echo "</main>";
+    }
+    ?>
+  </main>
 </body>
 <script src="../Js/about.js"></script>
 <script>

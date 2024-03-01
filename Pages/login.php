@@ -1,35 +1,39 @@
 <?php
 require("../require/require.php");
 
+if (!isset($_SESSION['login'])) {
+  $_SESSION['login'] = false;
+}
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
+if (isset($_POST['login'])) {
   if (trim($_POST['username']) == NULL) {
-    Header("Location:login.php?error1");
+    header("Location: login.php?error1");
+    exit();
   }
   if (trim($_POST['password']) == NULL) {
-    Header("Location:login.php?error2");
+    header("Location: login.php?error2");
+    exit();
   }
 
-  $query = $con->query("SELECT * FROM users WHERE username = '" . $con->real_escape_string($_POST['username']) . "'");
+  $username = $_POST['username'];
+  $password = $_POST['password'];
 
-  if ($query->num_rows == 1) {
-    $row = $query->fetch_assoc();
-    if ($_POST['password'] == $row['password']) {
-      $_SESSION['login'] = true;
+  $query = "SELECT COUNT(*) as count FROM `users` WHERE `username` = :username AND `password` = :password";
+  $stmt = $db->prepare($query);
+  $stmt->bindParam(1, $username, SQLITE3_TEXT);
+  $stmt->bindParam(2, $password, SQLITE3_TEXT);
+  $result = $stmt->execute();
+  $row = $result->fetchArray(SQLITE3_ASSOC);
+  $numRows = $row['count'];
 
-      if ($_SERVER['HTTP_REFFER'] != "") {
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-      } else {
-        Header("Location: ./profile.php");
-        header('Cache-Control: no cache');
-        session_cache_limiter('private_no_expire');
-        session_start();
-      }
-    } else {
-      Header("Location: login.php?error3");
-    }
+  if ($numRows == 1) {
+    session_start();
+    $_SESSION['login'] = true;
+    header("Location: ./profile.php");
+    exit();
   } else {
-    Header("Location: login.php?error4");
+    header("Location: login.php?error3");
+    exit();
   }
 }
 ?>
@@ -62,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <input placeholder="Password" class="input-field" type="password" required name='password'>
       </div>
       <div class="btn">
-        <button type="submit" class="button1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        <button type="submit" class="button1" name='login'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
       </div>
     </form>
   </div>

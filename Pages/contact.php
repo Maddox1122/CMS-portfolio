@@ -1,6 +1,10 @@
 <?php
 require("../require/require.php");
 require("../PHP/contact.php");
+
+if (!isset($_SESSION['login'])) {
+  $_SESSION['login'] = false;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
